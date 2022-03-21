@@ -2,9 +2,10 @@ var triangle = require('a-big-triangle');
 var createShader = require('gl-shader');
 var glslify = require('glslify');
 var renderAnimationFrameLoop = require('raf-loop');
-var texture2d = require('gl-texture2d');
-var baboonImage = require('baboon-image').transpose(2, 0, 2);
-var webGLContext = require('webgl-context')
+var createTexture = require('gl-texture2d');
+var webGLContext = require('webgl-context');
+var ndpack = require('ndpack-image');
+var img = require('./assets/image.png');
 
 /*
  * Initialize WebGL context as canvas
@@ -44,7 +45,9 @@ shader.uniforms.iChannel0 = 0;
 /*
  * Create any global textures you may need access to
  */
-var texture = texture2d(gl, baboonImage);
+const base64ImgData = img.replace('data:image/png;base64,', '');
+const imageData = ndpack(512, 512, 4, base64ImgData);
+var texture = createTexture(gl, imageData);
 texture.wrapS = texture.wrapT = gl.REPEAT;
 
 /*
