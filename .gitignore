@@ -130,3 +130,5 @@ dist
 *.pyc
 build
 metadata
+
+public/bundle.js
