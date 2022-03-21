@@ -36,7 +36,7 @@ shader.bind();
 shader.uniforms.iResolution = [
   gl.drawingBufferWidth,
   gl.drawingBufferHeight,
-  0 // TOOD: z doesn't matter so why this is a vec3?
+  0 // @NOTE: z doesn't matter so why this is a vec3 on ShaderToy?
 ];
 shader.uniforms.iGlobalTime = 0;
 shader.uniforms.iChannel0 = 0;
