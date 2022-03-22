@@ -1,6 +1,6 @@
 # GLSLify Live Reloading Template/Sandbox
 
-Live reloading sandbox for playing with shaders.
+Live reloading sandbox for playing with shaders. Leverages browserify, watchify, glslify, and imgurify.
 
 ## How to use
 
