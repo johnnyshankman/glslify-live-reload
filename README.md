@@ -7,8 +7,8 @@ Live reloading sandbox for playing with shaders.
 Just run `npm run start` to see the example I've laid out. It shows you how to:
 * Import a fragment and vertex shader
 * Use glslify to compile those shaders
-* Use glslify to import custom shaders and utilities installed from NPM
-* Define uniforms in your shader and update from the JS
+* Use glslify to import and use custom GLSLify ecosystem utilities from NPM
+* Define uniforms in your shader and update them from the JS
 * Resize the canvas according to screen resize
 * Run a render animation frame loop
 * Import and render any image data as a 2D texture
