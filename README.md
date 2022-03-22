@@ -1,4 +1,4 @@
-# GLSLify Live Reloading Template
+# GLSLify Live Reloading Template/Sandbox
 
 Live reloading sandbox for playing with shaders.
 
