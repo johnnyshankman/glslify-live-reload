@@ -33,8 +33,14 @@ float sdLink( vec3 p, float le, float r1, float r2 )
 
 float opDisplace(float d1, in vec3 p )
 {
-  float d2 = sin(20.*p.x)*sin(20.*p.y)*sin(20.*p.z);
+  // @todo: 10.0* is also cool
+  float d2 = sin(20.0 * p.x) * sin(20.0 * p.y) * sin(20.0 * p.z);
   return d1+d2;
+}
+
+vec3 opRepLim(vec3 p, float c, vec3 l)
+{
+  return p - c * clamp(floor((p / c) + 0.5), -l, l);
 }
 
 
@@ -55,6 +61,22 @@ vec2 doModel(vec3 p) {
   //     0.0
   //   )
   // );
+
+  // return vec2(
+  //   opDisplace(sdLink(
+  //     opRepLim(p, 2.0, vec3(1.0)),
+  //     0.5, 0.3, 0.125
+  //   ),p),
+  //   0.0
+  // );
+
+  return vec2(
+    sdLink(
+      opRepLim(p, 2.0, vec3(1.0)),
+      0.5, 0.3, 0.125
+    ),
+    0.0
+  );
 
   return vec2(
     opDisplace(sdLink(
