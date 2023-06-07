@@ -27,21 +27,41 @@ vec3 palette(float t, vec3 a, vec3 b, vec3 c, vec3 d) {
 
 float sdLink( vec3 p, float le, float r1, float r2 )
 {
-  vec3 q = vec3( p.x, max(abs(p.y)-le,0.0), p.z );
-  return length(vec2(length(q.xy)-r1,q.z)) - r2;
+  vec3 q = vec3(p.x, max(abs(p.y) - le, 0.0), p.z );
+  return length(vec2(length(q.xy) - r1,q.z)) - r2;
+}
+
+float opDisplace(float d1, in vec3 p )
+{
+  float d2 = sin(20.*p.x)*sin(20.*p.y)*sin(20.*p.z);
+  return d1+d2;
 }
 
 
 vec2 doModel(vec3 p) {
-  return opU(
-    vec2(
-      sdTriPrism(p, vec2( 0.90, 0.2 )),
-      0.0
-    ),
-    vec2(
-      sdTorus(p, vec2( 0.50, 0.2 )),
-      0.0
-    )
+  // return max(
+  //   vec2(
+  //     sdTriPrism(
+  //       p,
+  //       vec2( 0.90, 0.2 )
+  //     ),
+  //     0.0
+  //   ),
+  //   vec2(
+  //     sdLink(
+  //       p,
+  //       0.3, 0.3, 0.2
+  //     ),
+  //     0.0
+  //   )
+  // );
+
+  return vec2(
+    opDisplace(sdLink(
+      p,
+      0.5, 0.3, 0.125
+    ), p),
+    0.0
   );
 }
 
@@ -65,7 +85,7 @@ void main() {
     color = getNormal(pos);
   }
 
-  gl_FragColor = vec4(color, 1.0);
+  gl_FragColor = vec4(vec3(color.x), 1.0);
 }
 
 // void main() {
